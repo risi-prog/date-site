@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Date Request ❤️</title>
+<title>Date ❤️</title>
 
 <style>
 body{
@@ -12,151 +12,58 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#ffe6f0,#fff0f6);
-    font-family:Arial,sans-serif;
-    overflow:hidden;
+    background:#ffe6f0;
+    font-family:Arial;
 }
 
 .card{
-    background:white;
-    padding:35px;
-    border-radius:25px;
     text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
-    max-width:450px;
-}
-
-img{
-    width:180px;
+    background:white;
+    padding:30px;
     border-radius:20px;
-    margin-bottom:15px;
-}
-
-h1{
-    color:#d63384;
-}
-
-#countdown{
-    margin:20px 0;
-    font-size:20px;
-    font-weight:bold;
-    color:#ff4d88;
 }
 
 button{
-    border:none;
-    padding:15px 30px;
-    font-size:18px;
-    border-radius:30px;
-    cursor:pointer;
+    padding:12px 20px;
     margin:10px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
 }
 
-.yes{
-    background:#ff4d88;
-    color:white;
-}
-
-.no{
-    background:#ddd;
-}
-
-.heart{
-    position:absolute;
-    color:#ff4d88;
-    animation:fall 5s linear infinite;
-}
-
-@keyframes fall{
-    from{transform:translateY(-100px);}
-    to{transform:translateY(110vh);}
-}
+.yes{background:#ff2e7a;color:white;}
+.no{background:#ddd;}
 </style>
 </head>
 
 <body>
 
 <div class="card">
-
-<img src="https://media.tenor.com/8M7n7x4kT7AAAAAC/cute-cat.gif">
-
-<h1>🌸 Will you go on a date with me? 🌸</h1>
-
-<h3 id="countdown"></h3>
+<h1>Will you go on a date? 💖</h1>
 
 <button class="yes" onclick="window.location.href='yes.html'">
 YES 💖
 </button>
 
-<button class="no" id="no">
+<button class="no" id="noBtn">
 NO 😔
 </button>
-
 </div>
 
 <script>
+// NO ikën
+const noBtn = document.getElementById("noBtn");
 
-// 🔥 KËTU E NDRYSHON DATËN
-const targetDate = new Date(2026, 6, 1, 18, 0, 0).getTime();
-// (2026, 6, 1) = 1 July 2026
-// MUJTE: 0=Janar, 6=Korrik
-
-function updateCountdown(){
-
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if(distance <= 0){
-        document.getElementById("countdown").innerHTML =
-        "❤️ IT'S DATE TIME ❤️";
-        return;
-    }
-
-    const days = Math.floor(distance / (1000*60*60*24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-    document.getElementById("countdown").innerHTML =
-    `⏳ Our date starts in:<br>
-    ${days}d ${hours}h ${minutes}m ${seconds}s`;
+function move(){
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.position="fixed";
+    noBtn.style.left=x+"px";
+    noBtn.style.top=y+"px";
 }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-// NO BUTTON MOVE
-const noBtn = document.getElementById("no");
-
-function moveButton(){
-    const maxX = window.innerWidth - noBtn.offsetWidth;
-    const maxY = window.innerHeight - noBtn.offsetHeight;
-
-    noBtn.style.position = "fixed";
-    noBtn.style.left = Math.random() * maxX + "px";
-    noBtn.style.top = Math.random() * maxY + "px";
-}
-
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("click", moveButton);
-noBtn.addEventListener("touchstart", moveButton);
-
-// HEARTS
-function createHeart(){
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.fontSize = (Math.random()*20 + 10) + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(()=>heart.remove(), 5000);
-}
-
-setInterval(createHeart, 300);
-
+noBtn.addEventListener("mouseover", move);
+noBtn.addEventListener("click", move);
 </script>
 
 </body>
