@@ -6,7 +6,6 @@
 <title>You Said Yes ❤️</title>
 
 <style>
-
 body{
     margin:0;
     height:100vh;
@@ -23,102 +22,25 @@ body{
     background:white;
     padding:40px;
     border-radius:25px;
-    box-shadow:0 10px 30px rgba(0,0,0,.1);
-    z-index:10;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
 h1{
     color:#d63384;
-    margin-bottom:15px;
 }
 
 p{
     font-size:20px;
 }
-
-canvas{
-    position:fixed;
-    top:0;
-    left:0;
-    pointer-events:none;
-}
-
 </style>
 </head>
 
 <body>
 
 <div class="box">
-
-<h1>WAIT YOU ACTUALLY SAID YES?? 😭❤️</h1>
-
-<p>I was so ready for you to say no 😂</p>
-
-<h2>🌹 See You On Our Date 🌹</h2>
-
+<h1>😭 YOU SAID YES ❤️</h1>
+<p>See you on our date 💕</p>
 </div>
-
-<canvas id="canvas"></canvas>
-
-<script>
-
-const canvas =
-document.getElementById("canvas");
-
-const ctx =
-canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const hearts = [];
-
-for(let i=0;i<120;i++){
-
-    hearts.push({
-        x:Math.random()*canvas.width,
-        y:Math.random()*canvas.height,
-        size:Math.random()*20+10,
-        speed:Math.random()*2+1
-    });
-}
-
-function draw(){
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-    hearts.forEach(h=>{
-
-        ctx.font =
-        h.size + "px Arial";
-
-        ctx.fillText(
-            "❤️",
-            h.x,
-            h.y
-        );
-
-        h.y += h.speed;
-
-        if(h.y > canvas.height){
-
-            h.y = -20;
-            h.x =
-            Math.random()*canvas.width;
-        }
-    });
-
-    requestAnimationFrame(draw);
-}
-
-draw();
-
-</script>
 
 </body>
 </html>
