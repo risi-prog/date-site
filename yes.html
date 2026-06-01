@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>You Said Yes ❤️</title>
+<title>Our Date ❤️</title>
 
 <style>
 body{
@@ -13,24 +13,36 @@ body{
     justify-content:center;
     align-items:center;
     background:linear-gradient(135deg,#ffb6d9,#ffe6f2);
-    font-family:Arial,sans-serif;
-    text-align:center;
-    overflow:hidden;
+    font-family:Arial;
 }
 
 .box{
     background:white;
-    padding:40px;
-    border-radius:25px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    width:320px;
 }
 
-h1{
-    color:#d63384;
+#countdown{
+    font-size:18px;
+    font-weight:bold;
+    color:#ff2e7a;
+    margin:15px 0;
 }
 
-p{
-    font-size:20px;
+select, button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border-radius:10px;
+}
+
+button{
+    background:#ff2e7a;
+    color:white;
+    border:none;
+    cursor:pointer;
 }
 </style>
 </head>
@@ -38,9 +50,63 @@ p{
 <body>
 
 <div class="box">
-<h1>😭 YOU SAID YES ❤️</h1>
-<p>See you on our date 💕</p>
+
+<h1>Yesss 😭❤️</h1>
+
+<h2 id="countdown"></h2>
+
+<p>Ku don me shku?</p>
+
+<select id="place">
+    <option>🍔 Burger / Fast Food</option>
+    <option>🍕 Pizza</option>
+    <option>☕ Coffee</option>
+    <option>🍰 Dessert</option>
+    <option>🍽 Fancy Restaurant</option>
+</select>
+
+<button onclick="showChoice()">Confirm 💖</button>
+
+<p id="result"></p>
+
 </div>
+
+<script>
+
+// DATE COUNTDOWN
+const targetDate = new Date("2026-07-01T18:00:00").getTime();
+
+function update(){
+
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if(distance <= 0){
+        document.getElementById("countdown").innerHTML =
+        "❤️ It's Date Time ❤️";
+        return;
+    }
+
+    const days = Math.floor(distance/(1000*60*60*24));
+    const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+    const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+
+    document.getElementById("countdown").innerHTML =
+    `⏳ Date in: ${days}d ${hours}h ${minutes}m`;
+}
+
+update();
+setInterval(update,1000);
+
+// zgjedhja
+function showChoice(){
+    const place = document.getElementById("place").value;
+
+    document.getElementById("result").innerHTML =
+    "💖 Ok, we are going to: " + place;
+}
+
+</script>
 
 </body>
 </html>
