@@ -23,11 +23,13 @@ body{
     background:white;
     padding:40px;
     border-radius:25px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+    z-index:10;
 }
 
 h1{
     color:#d63384;
+    margin-bottom:15px;
 }
 
 p{
@@ -43,6 +45,7 @@ canvas{
 
 </style>
 </head>
+
 <body>
 
 <div class="box">
@@ -51,7 +54,7 @@ canvas{
 
 <p>I was so ready for you to say no 😂</p>
 
-<h2>🌹 See you on our date 🌹</h2>
+<h2>🌹 See You On Our Date 🌹</h2>
 
 </div>
 
@@ -59,15 +62,18 @@ canvas{
 
 <script>
 
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const canvas =
+document.getElementById("canvas");
+
+const ctx =
+canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const hearts = [];
 
-for(let i=0;i<100;i++){
+for(let i=0;i<120;i++){
 
     hearts.push({
         x:Math.random()*canvas.width,
@@ -75,25 +81,36 @@ for(let i=0;i<100;i++){
         size:Math.random()*20+10,
         speed:Math.random()*2+1
     });
-
 }
 
 function draw(){
 
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
     hearts.forEach(h=>{
 
-        ctx.font = h.size + "px Arial";
-        ctx.fillText("❤️",h.x,h.y);
+        ctx.font =
+        h.size + "px Arial";
+
+        ctx.fillText(
+            "❤️",
+            h.x,
+            h.y
+        );
 
         h.y += h.speed;
 
         if(h.y > canvas.height){
-            h.y = -20;
-            h.x = Math.random()*canvas.width;
-        }
 
+            h.y = -20;
+            h.x =
+            Math.random()*canvas.width;
+        }
     });
 
     requestAnimationFrame(draw);
